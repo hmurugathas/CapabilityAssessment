@@ -1,0 +1,47 @@
+﻿@model PressfordConsultingNews.ViewModels.ArticlesViewModel
+@{
+    ViewBag.Title = "Articles";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col py-4"><h2>Articles</h2></div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-striped table-hover">
+                <caption>All published articles</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Date Published</th>
+                        <th scope="col">Last Updated</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var article in Model.Articles)
+                    {
+                    <tr>
+                        <th scope="row">@article.Title</th>
+                        <td>@article.Author.FirstName  @article.Author.LastName</td>
+                        <td>@article.CreateDate.ToString("y")</td>
+                        <td>@article.UpdateDate.ToString("y")</td>
+                        <td>@Html.ActionLink("View", "Article", new { articleId = article.ArticleId }, new { @class = "text-primary" })</td>
+                        <td>@Html.ActionLink("Edit", "Editor", new { articleId = article.ArticleId }, new { @class = "text-primary" })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { articleId = article.ArticleId }, new { @class = "text-primary" })</td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

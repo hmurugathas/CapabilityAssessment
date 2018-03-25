@@ -1,0 +1,50 @@
+﻿@model PressfordConsultingNews.ViewModels.HomeViewModel
+@using PressfordConsultingNews.Extensions
+@{
+    ViewBag.Title = "Pressford Consulting - Home";
+}
+
+<section class="jumbotron text-center bg-white">
+    <div class="container">
+        <h1 class="jumbotron-heading">Company News</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>
+            @Html.ActionLink("View published articles", "Index", "Articles", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</section>
+
+<div class="bg-light">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col my-2"><h2>Latest News</h2></div>
+        </div>
+        <section class="row">
+
+            @foreach (var vm in Model.Articles)
+            {
+                <div class="col-6 py-2">
+                    <article class="card box-shadow h-100">
+                        <div class="card-header">
+                            @vm.Title
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">@vm.Content.Preview(200)</p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                @Html.ActionLink("View", "Article", "Articles", new { id = vm.ArticleId }, new { @class = "btn btn-sm btn-primary" })
+
+                                <small class="text-muted">@vm.Date.ToString("y") | @string.Format("{0} {1}", vm.FirstName, vm.LastName)</small>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+
+        </section>
+    </div>
+</div>

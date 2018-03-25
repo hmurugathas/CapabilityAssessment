@@ -1,0 +1,28 @@
+﻿@model PressfordConsultingNews.Models.Article
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="container">
+
+    <section class="row">
+
+            <div class="col py-4">
+                <article class="card box-shadow h-100">
+                    <div class="card-header">
+                        @Model.Title
+                    </div>
+                    <div class="card-body">
+
+                        <small class="text-muted">@Model.UpdateDate.ToString("dd MMMM yyyy") | @string.Format("{0} {1}", Model.Author.FirstName, Model.Author.LastName)</small>
+                        
+                        <p class="card-text py-2">@Model.Content</p>
+
+                    </div>
+                </article>
+            </div>
+        
+
+    </section>
+</div>
+
